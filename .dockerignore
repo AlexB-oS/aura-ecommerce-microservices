@@ -1,0 +1,24 @@
+# Keep Docker build contexts small and fast. The Go service build context is
+# the repo root, so exclude everything it doesn't need.
+.git
+.github
+.gitignore
+*.md
+docs/
+
+# Frontend — built by its own Dockerfile, never needed by the Go builds.
+web/node_modules
+web/.next
+web/out
+web/dist
+
+# Local env and editor cruft
+.env
+.env.*
+!.env.example
+.vscode
+.idea
+*.log
+
+# Go build artifacts
+bin/

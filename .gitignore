@@ -1,0 +1,30 @@
+# Secrets / local env
+.env
+.env.local
+.env.*.local
+
+# Go
+/bin/
+*.exe
+*.test
+*.out
+vendor/
+
+# Node / Next.js
+web/node_modules/
+web/.next/
+web/out/
+web/dist/
+web/.turbo/
+npm-debug.log*
+yarn-error.log*
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+
+# Local agent / tooling state
+.claude/
