@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-ink font-sans;
+    /* faint warm wash so the page never reads as flat white */
+    background-image:
+      radial-gradient(60rem 40rem at 100% -10%, rgba(109, 94, 250, 0.08), transparent 60%),
+      radial-gradient(50rem 40rem at -10% 10%, rgba(255, 122, 89, 0.07), transparent 55%);
+    background-attachment: fixed;
+  }
+  ::selection {
+    background: rgba(109, 94, 250, 0.22);
+  }
+}
+
+@layer components {
+  /* The signature AURA CTA: gradient pill that lifts and glows on hover. */
+  .btn-aura {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-aura-gradient px-6 py-3 text-sm font-semibold text-white
+           shadow-glow transition-all duration-200
+           hover:-translate-y-0.5 hover:shadow-[0_16px_50px_-12px_rgba(109,94,250,0.7)]
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-aura-violet/60
+           disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border
+           border-ink/12 bg-white/60 px-6 py-3 text-sm font-semibold text-ink
+           backdrop-blur transition-all duration-200 hover:border-ink/25 hover:bg-white;
+  }
+  /* Frosted card used across the storefront. */
+  .card {
+    @apply rounded-3xl border border-ink/8 bg-white/70 shadow-soft backdrop-blur-sm;
+  }
+  .input {
+    @apply w-full rounded-2xl border border-ink/12 bg-white/80 px-4 py-3 text-sm
+           text-ink placeholder:text-ink-muted/70 transition
+           focus:border-aura-violet/60 focus:outline-none
+           focus:ring-4 focus:ring-aura-violet/15;
+  }
+  .label {
+    @apply mb-1.5 block text-xs font-semibold uppercase tracking-wide text-ink-muted;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-aura-gradient bg-clip-text text-transparent;
+  }
+  /* Decorative dotted grid for hero backgrounds. */
+  .bg-dotgrid {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .container-aura {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+}
