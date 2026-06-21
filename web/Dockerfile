@@ -7,9 +7,9 @@
 # ---- deps: install node_modules ------------------------------------------
 FROM node:20-alpine AS deps
 WORKDIR /app
-COPY package.json package-lock.json* ./
-# No lockfile is committed in this template, so fall back to a plain install.
-RUN npm install
+# Reproducible install from the committed lockfile.
+COPY package.json package-lock.json ./
+RUN npm ci
 
 # ---- builder: compile the Next app ---------------------------------------
 FROM node:20-alpine AS builder

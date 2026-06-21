@@ -2,8 +2,9 @@
 # Multi-stage build for the notification service (build context = repo root).
 FROM golang:1.23-alpine AS builder
 WORKDIR /src
-ENV CGO_ENABLED=0 GOOS=linux GOFLAGS=-mod=mod
-COPY go.mod ./
+ENV CGO_ENABLED=0 GOOS=linux
+COPY go.mod go.sum ./
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
 COPY pkg ./pkg
 COPY services/notification ./services/notification
 RUN --mount=type=cache,target=/go/pkg/mod \

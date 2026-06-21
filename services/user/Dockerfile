@@ -11,12 +11,13 @@
 FROM golang:1.23-alpine AS builder
 WORKDIR /src
 
-# Static, reproducible-ish build. GOFLAGS=-mod=mod lets the build resolve and
-# write go.sum on the fly; once you run `go mod tidy` locally and commit go.sum,
-# you can drop -mod=mod and add a cached `go mod download` layer for speed.
-ENV CGO_ENABLED=0 GOOS=linux GOFLAGS=-mod=mod
+# Static, reproducible build against the committed go.mod + go.sum.
+ENV CGO_ENABLED=0 GOOS=linux
 
-COPY go.mod ./
+# Cached dependency layer — only re-runs when go.mod/go.sum change.
+COPY go.mod go.sum ./
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
+
 COPY pkg ./pkg
 COPY services/user ./services/user
 

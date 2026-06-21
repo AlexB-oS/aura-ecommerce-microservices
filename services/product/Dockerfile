@@ -7,9 +7,12 @@
 # ---- Stage 1: build -------------------------------------------------------
 FROM golang:1.23-alpine AS builder
 WORKDIR /src
-ENV CGO_ENABLED=0 GOOS=linux GOFLAGS=-mod=mod
+ENV CGO_ENABLED=0 GOOS=linux
 
-COPY go.mod ./
+# Cached dependency layer (keyed on the committed go.mod + go.sum).
+COPY go.mod go.sum ./
+RUN --mount=type=cache,target=/go/pkg/mod go mod download
+
 COPY pkg ./pkg
 COPY services/product ./services/product
 
