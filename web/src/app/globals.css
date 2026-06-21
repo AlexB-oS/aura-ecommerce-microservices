@@ -37,15 +37,15 @@
   }
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-2 rounded-full border
-           border-ink/12 bg-white/60 px-6 py-3 text-sm font-semibold text-ink
-           backdrop-blur transition-all duration-200 hover:border-ink/25 hover:bg-white;
+           border-line bg-white/60 px-6 py-3 text-sm font-semibold text-ink
+           backdrop-blur transition-all duration-200 hover:border-line-strong hover:bg-white;
   }
   /* Frosted card used across the storefront. */
   .card {
-    @apply rounded-3xl border border-ink/8 bg-white/70 shadow-soft backdrop-blur-sm;
+    @apply rounded-3xl border border-line bg-white/70 shadow-soft backdrop-blur-sm;
   }
   .input {
-    @apply w-full rounded-2xl border border-ink/12 bg-white/80 px-4 py-3 text-sm
+    @apply w-full rounded-2xl border border-line bg-white/80 px-4 py-3 text-sm
            text-ink placeholder:text-ink-muted/70 transition
            focus:border-aura-violet/60 focus:outline-none
            focus:ring-4 focus:ring-aura-violet/15;

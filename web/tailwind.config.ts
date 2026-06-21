@@ -12,6 +12,14 @@ const config: Config = {
     extend: {
       colors: {
         paper: "#F6F4F1",
+        // Solid border tints. These exist so component classes can use them
+        // inside @apply: Tailwind can't apply an opacity modifier to the
+        // DEFAULT shade of a nested color (e.g. `border-ink/12`) within @apply,
+        // so we use these flat colors there instead.
+        line: {
+          DEFAULT: "#E6E3DE",
+          strong: "#D4D0CA",
+        },
         ink: {
           DEFAULT: "#141318",
           soft: "#3A3A42",
