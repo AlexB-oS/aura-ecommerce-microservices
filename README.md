@@ -336,9 +336,12 @@ The business logic is tested without a database by swapping the Postgres
 repository for an in-memory fake (the payoff of depending on interfaces):
 
 ```bash
-go mod tidy            # first time only: resolves deps + writes go.sum
 go test ./...          # or: make test
 ```
+
+Dependencies are fully pinned — `go.sum` and `web/package-lock.json` are
+committed, so `go test`, `docker compose build`, and CI all resolve the exact
+same versions every time.
 
 Each service's `service` package has unit tests run against in-memory fakes —
 registration & token refresh (user), price validation & low-stock events
